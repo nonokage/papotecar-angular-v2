@@ -5,8 +5,6 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
-import { AuthService } from './services/auth.service';
-import { AuthGuardService } from './services/auth-guard.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
@@ -17,6 +15,7 @@ import { RunFormSearchComponent } from './run/run-form-search/run-form-search.co
 import { RunFormPutComponent } from './run/run-form-put/run-form-put.component';
 import { RunListViewComponent } from './run-list-view/run-list-view.component';
 import { RunViewComponent } from './run/run-view/run-view.component';
+import { RunService } from './services/run.service';
 
 const appRoutes: Routes = [
   { path: 'auth/signup', component: SignupComponent },
@@ -24,10 +23,10 @@ const appRoutes: Routes = [
   { path: 'papotecar', component: PapoteViewComponent },
   { path: '', component: PapoteViewComponent },
   { path: 'run/form', component: RunFormPutComponent},
-  { path: 'runs', canActivate: [AuthGuardService], component: RunListViewComponent },
-  { path: 'runs/new', canActivate: [AuthGuardService], component: RunFormPutComponent },
-  { path: 'runs/search', canActivate: [AuthGuardService], component: RunFormSearchComponent },
-  { path: 'runs/view/:id', canActivate: [AuthGuardService], component: RunViewComponent },
+  { path: 'runs', component: RunListViewComponent },
+  { path: 'run/new', component: RunFormPutComponent },
+  { path: 'run/search', component: RunFormSearchComponent },
+  { path: 'run/view/:id', component: RunViewComponent },
   { path: '', redirectTo: 'papotecar', pathMatch: 'full' },
   { path: '**', redirectTo: 'papotecar' }
 ];
@@ -55,7 +54,7 @@ const appRoutes: Routes = [
       // <-- debugging purposes only
       { enableTracing: true } )
   ],
-  providers: [AuthService, AuthGuardService],
+  providers: [RunService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

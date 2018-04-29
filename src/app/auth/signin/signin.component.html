@@ -6,19 +6,17 @@
     <form (ngSubmit)="onSubmit(f)" #f="ngForm">
         <div class="form-group">
             <label for="email">Email address</label>
-            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" name="email" ngModel>
             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Password">
+            <input type="password" class="form-control" id="password" placeholder="Password" name="password" ngModel>
         </div>
-        <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="checkbox">
+        <!--<div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="checkbox" name="checkbox" ngModel>
             <label class="form-check-label" for="checkbox">Check me out</label>
-        </div>
+        </div>-->
         <button type="submit" class="btn btn-outline-success">Submit</button>
     </form>
-    <!-- eventuel message d'erreur retourné par firebase -->
-    <p class="text-danger">{{ errorMessage }}</p>
 </div>

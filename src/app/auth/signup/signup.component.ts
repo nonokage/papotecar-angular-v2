@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormBuilder, FormGroup, NgForm } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
+import { FormGroup, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MemberModel } from '../../models/member.model';
 
 @Component({
   selector: 'app-signup',
@@ -10,37 +10,30 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent implements OnInit {
 
-  signupForm: FormGroup;
-  errorMessage: string;
+  member: MemberModel;
 
-  constructor(private formBuilder: FormBuilder,
-              private authService: AuthService,
-              private router: Router) { }
+  constructor() { }
 
   ngOnInit() {
-    this.initForm();
-  }
-
-  initForm() {
-    this.signupForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.pattern(/[0-9a-zA-Z]{6,}/)]],
-      // le password doit contenir au moins 6 caracteres
-    });
   }
 
   onSubmit(form: NgForm) {
-    const email = this.signupForm.get('email').value;
-    const password = this.signupForm.get('password').value;
-    this.authService.createNewUser(email, password).then(
-      () => {
-        this.router.navigate(['/books']);
-      },
-      (error) => {
-        this.errorMessage = error;
-      }
-    );
+    // construction d'un membre
+    this.member = new MemberModel(
+      1,
+      form.value.firstname,
+      form.value.lastname,
+      form.value.email,
+      form.value.password,
+      form.value.tel,
+      form.value.vehicule,
+      form.value.role);
+
+    console.log('form.value: ');
     console.log(form.value);
+    console.log('member: ');
+    console.log(this.member);
   }
+
 
 }

@@ -3,15 +3,15 @@
       Inscription à Papotecar
   </div>
   <h2>Créer un compte</h2>
-  <form [formGroup]="signupForm" (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
       <div class="form-row">
           <div class="col-md-4 mb-3">
-              <label for="firstname">First name</label>
-              <input type="text" class="form-control" id="firstname" placeholder="First name" required>
+              <label for="firstname">First name*</label>
+              <input type="text" class="form-control" id="firstname" placeholder="First name" required name="firstname" ngModel>
           </div>
           <div class="col-md-4 mb-3">
-              <label for="lastname">Last name</label>
-              <input type="text" class="form-control" id="lastname" placeholder="Last name" required>
+              <label for="lastname">Last name*</label>
+              <input type="text" class="form-control" id="lastname" placeholder="Last name" required name="lastname" ngModel>
           </div>
           <!--<div class="col-md-4 mb-3">
               <label for="validationServerUsername">Username</label>
@@ -28,28 +28,41 @@
       </div>
       <div class="form-row">
           <div class="col-md-6 mb-3">
+              <!-- city et zip ne sont pas compris dans le model -->
               <label for="city">City</label>
-              <input type="text" class="form-control" id="city" placeholder="City" required>
+              <input type="text" class="form-control" id="city" placeholder="City" required name="city" ngModel>
           </div>
           <div class="col-md-3 mb-3">
               <label for="zip">Zip</label>
-              <input type="text" class="form-control" id="zip" placeholder="Zip" required>
+              <input type="text" class="form-control" id="zip" placeholder="Zip" required name ="zip" ngModel>
           </div>
+          <div class="col-md-3 mb-3">
+            <label for="zip">Tel</label>
+            <input type="text" class="form-control" id="tel" placeholder="Tel" required name ="tel" ngModel>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label for="city">Role</label>
+            <input type="text" class="form-control" id="role" placeholder="Role" required name="role" ngModel>
+        </div>
+        <div class="col-md-6 mb-3">
+                <label for="city">Vehicule</label>
+                <input type="text" class="form-control" id="vehicule" placeholder="Vehicule" required name="vehicule" ngModel>
+            </div>
       </div>
       <div class="form-row">
           <div class="form-group col-md-6">
-              <label for="email">Email</label>
-              <input type="email" class="form-control" id="email" placeholder="Email">
+              <label for="email">Email*</label>
+              <input type="email" class="form-control" id="email" placeholder="Email" required name="email" ngModel>
           </div>
           <div class="form-group col-md-6">
-              <label for="password">Password</label>
-              <input type="password" class="form-control" id="password" placeholder="Password">
+              <label for="password">Password*</label>
+              <input type="password" class="form-control" id="password" placeholder="Password" required name="password" ngModel>
           </div>
       </div>
       <button class="btn btn-outline-primary" 
                 type="submit"
                 >Validate</button>
   </form>
-  <!-- eventuel message d'erreur retourné par firebase [disabled]="signupForm.invalid" -->
-  <p class="text-danger">{{ errorMessage }}</p>
 </div>

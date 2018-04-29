@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, NgForm } from '@angular/forms';
+
 
 @Component({
   selector: 'app-run-form-search',
@@ -12,4 +14,8 @@ export class RunFormSearchComponent implements OnInit {
   ngOnInit() {
   }
 
+  onSubmit(form: NgForm) {
+    console.log(form.value);
+
+  }
 }

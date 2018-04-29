@@ -18,13 +18,10 @@
                  routerLink="/auth/signin">Connexion</a>
           </li>
           <li>
-            <a (click)="onSignOut()"
+            <a
                style="cursor:pointer"
                *ngIf="isAuth">Déconnexion</a>
           </li>
-          <!--<li class="nav-item" routerLinkActive="active">
-              <a class="nav-link disabled">Disabled</a>
-          </li>-->
       </ul>
   </div>
 </nav>
