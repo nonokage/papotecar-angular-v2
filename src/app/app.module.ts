@@ -13,18 +13,23 @@ import { Routes, RouterModule } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PapoteViewComponent } from './papote-view/papote-view.component';
 import { FooterComponent } from './footer/footer.component';
-import { RunFormDetailsComponent } from './run/run-form-details/run-form-details.component';
-import { RunFormSimpleComponent } from './run/run-form-simple/run-form-simple.component';
+import { RunFormSearchComponent } from './run/run-form-search/run-form-search.component';
+import { RunFormPutComponent } from './run/run-form-put/run-form-put.component';
+import { RunListViewComponent } from './run-list-view/run-list-view.component';
+import { RunViewComponent } from './run/run-view/run-view.component';
 
 const appRoutes: Routes = [
   { path: 'auth/signup', component: SignupComponent },
   { path: 'auth/signin', component: SigninComponent },
   { path: 'papotecar', component: PapoteViewComponent },
   { path: '', component: PapoteViewComponent },
-  { path: 'run/form', component: RunFormDetailsComponent}
-  /*{ path: 'books/new', component: BookFormComponent },
-  { path: 'books/view/:id', component: SingleBookComponent }*/
-
+  { path: 'run/form', component: RunFormPutComponent},
+  { path: 'runs', canActivate: [AuthGuardService], component: RunListViewComponent },
+  { path: 'runs/new', canActivate: [AuthGuardService], component: RunFormPutComponent },
+  { path: 'runs/search', canActivate: [AuthGuardService], component: RunFormSearchComponent },
+  { path: 'runs/view/:id', canActivate: [AuthGuardService], component: RunViewComponent },
+  { path: '', redirectTo: 'papotecar', pathMatch: 'full' },
+  { path: '**', redirectTo: 'papotecar' }
 ];
 
 
@@ -36,8 +41,10 @@ const appRoutes: Routes = [
     NavbarComponent,
     PapoteViewComponent,
     FooterComponent,
-    RunFormDetailsComponent,
-    RunFormSimpleComponent
+    RunFormSearchComponent,
+    RunFormPutComponent,
+    RunListViewComponent,
+    RunViewComponent
   ],
   imports: [
     BrowserModule,
